@@ -1,0 +1,31 @@
+{
+  "name": "ui-automation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tazad09/ui-automation.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tazad09/ui-automation/issues"
+  },
+  "homepage": "https://github.com/tazad09/ui-automation#readme",
+  "dependencies": {
+    "@wdio/cli": "^7.8.0",
+    "chai": "^4.3.4"
+  },
+  "devDependencies": {
+    "@wdio/local-runner": "^7.8.0",
+    "@wdio/mocha-framework": "^7.8.0",
+    "@wdio/spec-reporter": "^7.8.0",
+    "chromedriver": "^92.0.0",
+    "wdio-chromedriver-service": "^7.2.0"
+  }
+}
