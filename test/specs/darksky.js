@@ -1,3 +1,4 @@
+
 var chaiExpect = require("chai").expect;
 
 describe("Darksky Main page", () => {
@@ -8,8 +9,9 @@ describe("Darksky Main page", () => {
 
   it("should search for 10001 and verify the text value of 10001", async () => {
     await browser.url("https://darksky.net/");
-    const searchInput = await browser.$('//*[@id="searchForm"]/input');
-    const searchButton = await browser.$('//*[@id="searchForm"]/a[2]/img');
+    const searchInput = await browser.$('#searchForm');
+    const searchButton = await browser.$('.searchForm');
+
 
     searchInput.clearValue();
     searchInput.addValue("10001");
@@ -21,8 +23,9 @@ describe("Darksky Main page", () => {
   it("shoudl verify forecast hours in timeline incremented by 2 hours for next 24 hours", async () => {
 
     const nowHour = new Date().getHours();
+
     for (var i = 1; i < 13; i += 2) {
-      const selector = `//*[@id="timeline"]/div/div[3]/span[` + i + `]/span`;
+      const selector = `#timeline .hours span:nth-child(${i}) span`
       const span = await browser.$(selector);
       const time = await span.getText();
 
@@ -44,17 +47,18 @@ describe("Darksky Main page", () => {
   });
 
   it("should verify current temperature is not less than the lowest value and greater than the highest value", async () => {
+
     const currentTemp = await browser.$(
-      '//*[@id="timeline"]/div/div[4]/span[1]/span'
+      '.temps .first span:nth-child(1)'
     );
     const lowestTemp = await browser.$(
-      '//*[@id="title"]/span[1]/span[2]/span[2]/span[2]/span[2]'
+      '.low-temp-text'
     );
     const highestTemp = await browser.$(
-      '//*[@id="title"]/span[1]/span[2]/span[2]/span[3]/span[2]'
+      '.high-temp-text'
     );
 
-    const temp = await currentTemp.getText(); //
+    const temp = await currentTemp.getText();
     const low = await lowestTemp.getText();
     const high = await highestTemp.getText();
 
@@ -65,4 +69,6 @@ describe("Darksky Main page", () => {
     chaiExpect(parseInt(tempNumber)).to.be.gt(parseInt(lowNumber));
     chaiExpect(parseInt(tempNumber)).to.be.lt(parseInt(highNumber));
   });
+
+
 });
